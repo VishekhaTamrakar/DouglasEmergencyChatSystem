@@ -11,9 +11,9 @@ from import_export.admin import ImportExportModelAdmin
 #     def invited_user(self, obj):
 #         return "\n".join([user.username for user in obj.invited.all()])
 #
-class ChatAdmin(admin.ModelAdmin):
-    '''Dialogs'''
-    list_display = ("room", "user", "text", "date")
+# class ChatAdmin(admin.ModelAdmin):
+#     '''Dialogs'''
+#     list_display = ("room", "user", "text", "date")
 
 class EventResources(resources.ModelResource):
 
@@ -24,10 +24,21 @@ class EventResources(resources.ModelResource):
         def invited_user(self, obj):
             return "\n".join([user.username for user in obj.invited.all()])
 
+
+class ChatResources(resources.ModelResource):
+    '''Dialogs'''
+    class Meta:
+        model = Chat
+        list_display = ("room", "user", "text", "date")
+
+
 @admin.register(Event)
 class EventAdmin(ImportExportModelAdmin):
     pass
 
+@admin.register(Chat)
+class ChatAdmin(ImportExportModelAdmin):
+    pass
 
 # admin.site.register(Event, EventAdmin)
-admin.site.register(Chat, ChatAdmin)
+#admin.site.register(Chat, ChatAdmin)
