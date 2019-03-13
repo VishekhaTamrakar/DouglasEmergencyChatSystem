@@ -1,0 +1,41 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+
+    background-image: url("/dcechat/staticfiles/images/test.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home
+{
+  color: green;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  top: 50%;
+
+  position: relative }              /* 1 */
+
+
+h1 a, h2 a {
+    color: #C25100;
+    font-family: 'Lobster';
+    text-align: center;
+
+
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+}

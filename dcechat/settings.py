@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'dcechat',
     'chat',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -80,19 +81,11 @@ WSGI_APPLICATION = 'dcechat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'YOUR DB NAME',
-        'USER': 'YOUR DB USER',
-        'PASSWORD': 'YOUR DB PW',
-        'HOST': 'YOUR DB HOST',
+        'NAME': 'd2nhm1ipth620t',
+        'USER': 'ozjwhhcrprlptg',
+        'PASSWORD': '4544b252c5c5236f0892c619b2315eb7ddbfa7fe97134683259a093d4847b042',
+        'HOST': 'ec2-23-23-241-119.compute-1.amazonaws.com',
         'PORT': '5432',
-    }
-}
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -138,11 +131,12 @@ USE_TZ = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
 
 #
-# STATICFILES_DIRS = (
-#     os.path.join(PROJECT_ROOT, 'staticfiles'),
-# )
+STATICFILES_DIRS = (
+   os.path.join(PROJECT_ROOT, 'static'),
+)
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -156,7 +150,8 @@ DATABASES['default'] = dj_database_url.config()
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-STATIC_URL = '/static/'
+
+
 
 
 try:
