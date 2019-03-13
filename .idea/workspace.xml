@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b7bfd17-fee2-4a50-81aa-a4769282e73e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dcechat/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +26,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="2" />
           <entry key="json" value="1" />
-          <entry key="py" value="5" />
+          <entry key="py" value="6" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
@@ -39,7 +35,7 @@
           <entry key="HTML" value="2" />
           <entry key="JSON" value="1" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="5" />
+          <entry key="Python" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -75,17 +71,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dcechat/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
-              <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
+            <state relative-caret-position="281">
+              <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chat/views.py">
+        <entry file="file://$PROJECT_DIR$/dcechat/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="120">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -179,8 +175,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="542" />
-    <option name="y" value="25" />
+    <option name="x" value="280" />
+    <option name="y" value="23" />
     <option name="width" value="1219" />
     <option name="height" value="822" />
   </component>
@@ -200,18 +196,7 @@
             <path>
               <item name="dcechat" type="b2602c69:ProjectViewProjectNode" />
               <item name="dcechat" type="462c0819:PsiDirectoryNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dcechat" type="b2602c69:ProjectViewProjectNode" />
               <item name="dcechat" type="462c0819:PsiDirectoryNode" />
-              <item name="dcechat" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dcechat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dcechat" type="462c0819:PsiDirectoryNode" />
-              <item name="dcechat" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -283,8 +268,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="542" y="25" width="1219" height="822" extended-state="0" />
-    <editor active="true" />
+    <frame x="280" y="23" width="1219" height="822" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26253185" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -388,10 +372,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dcechat/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dcechat/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
+        <state relative-caret-position="281">
+          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
         </state>
       </provider>
     </entry>
