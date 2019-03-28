@@ -1,28 +1,24 @@
 {% extends 'base.html' %}
-{%load static%}
+{% load staticfiles %}
+{% block content %}
+            {% if user.is_authenticated %}
+                <div class="page-container">
 
-<html>
+                    <h2 class="top-menu">Hello {{ user.username }},</h2>
+                    <p>Please choose from below options.</p>
 
-<head>
+                </div>
+            {% endif %}
+            <div class="content container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="links">
+                            <!-- Example row of columns -->
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<link rel="stylesheet" type=text/css href="{% static 'css/home.css' %}">
-<body style="background-color:powderblue;">
-
-<div class="bg">
-
-<div class="home">
-    <h1><a href="/">EMERGENCY MANAGEMENT SYSTEM</a></h1>
-  </div>
-  <div class="home">
-      <h2>35 DAYS</h2>
-  </div>
-  <div class="home">
-    <h1>COMING SOON</h1>
-  </div>
-    </div>
-
-</body>
-</html>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+    </html>
+{% endblock %}
