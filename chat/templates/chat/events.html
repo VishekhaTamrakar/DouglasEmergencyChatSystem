@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<div class="row">
+  <div class="col-sm-6">
+      {% for event in events %}
+    <div class="card">
+      <div class="card-body">
+
+        <h5 class="card-title">{{ event.name }}</h5>
+          <p>{%  if event.is_open %}Open{% else %}Closed{% endif %}</p>
+
+        <p class="card-text">{{ event.description }}</p>
+          <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-primary">Enter</a>
+
+      </div>
+
+    </div>
+      {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

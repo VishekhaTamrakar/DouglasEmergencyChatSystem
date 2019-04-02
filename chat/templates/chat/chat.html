@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <div class="col-sm-8">
+          <div class="chatbody">
+
+            <table class="table">
+              <tr>
+                <td>message</td>
+                <td>time</td>
+              </tr>
+            </table>
+          </div>
+    </div>
+
+    <div class="row">
+  <div class="col-sm-6">
+      {% for message in messages %}
+    <div class="card">
+      <div class="card-body">
+
+        <h5 class="card-title">{{ message.text }}</h5>
+
+        <p class="card-text">{{ message.room }}</p>
+        <a href="{% url 'chat' %}" class="btn btn-primary">Enter</a>
+      </div>
+
+    </div>
+      {% endfor %}
+  </div>
+
+</div>
+
+
+{% endblock %}
