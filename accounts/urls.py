@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', views.dashboard, name='dashboard'),
     path('', include('django.contrib.auth.urls')),
+    path('', include('sendemail.urls')),
 # change password urls
     path('password_change/',auth_views.PasswordChangeView.as_view(), name='password_change'),
     path('password_change/done/',auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
@@ -21,4 +22,6 @@ urlpatterns = [
 
     path('register/', views.register, name='register'),
     path('edit/', views.edit, name='edit'),
+    path('about',views.about,name='about'),
+    path('contact',views.contact,name='contact'),
 ]

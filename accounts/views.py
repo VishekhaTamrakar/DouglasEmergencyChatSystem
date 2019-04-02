@@ -80,3 +80,9 @@ def edit(request):
                   'accounts/edit.html',
                   {'user_form': user_form,
                    'profile_form': profile_form})
+
+def about (request):
+    return render (request,'about.html',{})
+
+def contact(request):
+ return render(request,'contactus.html',{})
