@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     path('', views.EventView.as_view(), name='events'),
     path('event/<int:pk>', views.event_detail, name='event_details'),
+    #path('event/new/', views.post_new, name='message_new')
 ]

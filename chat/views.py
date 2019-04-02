@@ -7,7 +7,6 @@ import json
 from django.contrib.auth.decorators import login_required
 
 
-
 def homepage(request):
     return render(request, 'homepage.html',
                   {'dcechat': homepage})
@@ -23,6 +22,9 @@ class EventView(ListView):
 @login_required
 def event_detail(request, pk):
     messages = Chat.objects.filter(room=pk)
-    print(messages)
     return render(request, 'chat/event_detail.html', {'messages':messages})
+
+# @login_required
+# def create_post(request, pk):
+
 
