@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Muli);
+@import url(https://fonts.googleapis.com/css?family=Muli);
 
 body {
     margin:0;
@@ -113,7 +113,7 @@ input[type=submit], a.button {
     font-weight:bold;
     background:#343A40;
     color:#fff;
-    padding:10px 20px;
+    /*padding:10px 20px;*/
     font-size:14px;
     text-transform:uppercase;
 }

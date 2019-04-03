@@ -27,8 +27,8 @@
 
         {% else %}
       <a class="nav-item nav-link" href="{% url 'login' %}">Log In</a>
-      <a class="nav-item nav-link" href="#">Contact Us</a>
-      <a class="nav-item nav-link" href="#">About Us</a>
+      <a class="nav-item nav-link" href="{% url 'contact' %}">Contact Us</a>
+      <a class="nav-item nav-link" href="{% url 'about' %}">About Us</a>
         {% endif %}
     </div>
   </div>

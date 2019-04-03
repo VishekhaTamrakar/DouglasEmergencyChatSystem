@@ -50,3 +50,9 @@ def register(request):
     return render(request,
                   'accounts/register.html',
                   {'user_form': user_form})
+
+def about (request):
+    return render (request,'about.html',{})
+
+def contact(request):
+ return render(request,'contactus.html',{})
