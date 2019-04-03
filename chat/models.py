@@ -7,7 +7,8 @@ class Event(models.Model):
     '''Event Room'''
     name = models.CharField(max_length=100)
     creater = models.ForeignKey(User, verbose_name="Creater", on_delete=models.CASCADE)
-    invited = models.ManyToManyField(User, verbose_name="Participants", related_name="invited_user")
+    desc = models.CharField(max_length=255, blank=True, null=True)
+    invited = models.ManyToManyField(User, verbose_name="Participants", related_name="invited_user", blank=True, null=True)
     date = models.DateTimeField("Date Created", auto_now_add=True)
     is_open = models.BooleanField(default=True, blank=False, null=False)
 

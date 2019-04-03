@@ -15,26 +15,52 @@
 	        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
 		}
 
+        #events_card{
+            padding-bottom: 40px;
+        }
     </style>
 
-<div class="row">
-  <div class="col-sm-6">
-      {% for event in events %}
-    <div class="card">
+{#<div class="row">#}
+{#  <div class="container">#}
+{#      {% for event in events %}#}
+{#    <div class="card">#}
+{#        <div class="row">#}
+{##}
+{#      <div class="card-body">#}
+{##}
+{#        <h5 class="card-title">{{ event.name }}</h5>#}
+{#          {%  if event.is_open %}#}
+{#              <span class="badge badge-primary">Open</span>#}
+{#          {% else %}#}
+{#              <span class="badge badge-danger">Closed</span>#}
+{#          {% endif %}#}
+{##}
+{#        <p class="card-text">{{ event.description }}</p>#}
+{#          <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-primary">Enter</a>#}
+{##}
+{#      </div><!-- Card Body-->#}
+{#        </div>#}
+{#    </div> <!-- Card -->#}
+{#      {% endfor %}#}
+{#  </div>#}
+{##}
+{#</div>#}
+
+
+    <div class="row" id="events_card">
+    {% for event in events %}
+  <div class="col-md-4">
+    <div class="card text-white bg-dark mb-3">
       <div class="card-body">
-
         <h5 class="card-title">{{ event.name }}</h5>
-          <p>{%  if event.is_open %}Open{% else %}Closed{% endif %}</p>
-
-        <p class="card-text">{{ event.description }}</p>
-          <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-primary">Enter</a>
-
+        <p class="card-text">{{ event.desc }}</p>
+         <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-primary">Enter</a>
+          {% if user.is_superuser %}
+          <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-warning">Edit</a>
+          {% endif %}
       </div>
-
     </div>
-      {% endfor %}
   </div>
-
+  {% endfor %}
 </div>
-
 {% endblock %}

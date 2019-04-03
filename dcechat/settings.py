@@ -164,7 +164,7 @@ except ImportError:
 
 #LOGIN_REDIRECT_URL = '/homepage'
 
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = 'events'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
