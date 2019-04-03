@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'accounts',
     'dcechat',
     'chat',
@@ -45,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

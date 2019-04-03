@@ -8,16 +8,21 @@ from django.utils.safestring import mark_safe
 import json
 from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
+from .forms import *
+from django.utils import timezone
+
+now=timezone.now()
 
 
 
+@login_required
 def homepage(request):
     return render(request, 'homepage.html',
                   {'dcechat': homepage})
 
 
 
-class EventView(ListView):
+class EventView(ListView, LoginRequiredMixin):
     template_name = "chat/events.html"
     model = Event
     context_object_name = 'events'
@@ -72,3 +77,34 @@ def create_message(request):
     else:
         data1 = "bad response"
         return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+@login_required
+def event_edit(request, pk):
+    if request.user.is_superuser:
+        event = get_object_or_404(Event, pk=pk)
+        if request.method == "POST":
+            form = EventForm(request.POST, instance=event)
+            if form.is_valid():
+                event = form.save(commit=False)
+                event.date = timezone.now()
+                event.save()
+                # return render(request, 'chat/events.html', {'events': event})
+                return redirect('/events')
+        else:
+            form = EventForm(instance=event)
+            return render(request, 'chat/event_edit.html', {'form': form})
+
+
+@login_required
+def event_create(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form = EventForm(request.POST)
+            if form.is_valid():
+                event = form.save(commit=False)
+                event.date = timezone.now()
+                event.save()
+                return redirect('/events')
+        else:
+            form = EventForm()
+        return render(request, 'chat/event_create.html', {'form': form})

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<style>
+    #buttonSave{
+        padding-top: 200px;
+    }
+</style>
+{% block content %}
+    <h1>New Event</h1>
+    <form method="POST" class="customer-form">{% csrf_token %}
+        {{ form|crispy }}
+
+    <button type="submit" class="save btn btn-primary" id="buttonSave">Save</button>
+    </form>
+
+
+{% endblock %}
