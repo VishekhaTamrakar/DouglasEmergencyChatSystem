@@ -20,31 +20,6 @@
         }
     </style>
 
-{#<div class="row">#}
-{#  <div class="container">#}
-{#      {% for event in events %}#}
-{#    <div class="card">#}
-{#        <div class="row">#}
-{##}
-{#      <div class="card-body">#}
-{##}
-{#        <h5 class="card-title">{{ event.name }}</h5>#}
-{#          {%  if event.is_open %}#}
-{#              <span class="badge badge-primary">Open</span>#}
-{#          {% else %}#}
-{#              <span class="badge badge-danger">Closed</span>#}
-{#          {% endif %}#}
-{##}
-{#        <p class="card-text">{{ event.description }}</p>#}
-{#          <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-primary">Enter</a>#}
-{##}
-{#      </div><!-- Card Body-->#}
-{#        </div>#}
-{#    </div> <!-- Card -->#}
-{#      {% endfor %}#}
-{#  </div>#}
-{##}
-{#</div>#}
 
 
     <div class="row" id="events_card">
@@ -55,7 +30,7 @@
         <h5 class="card-title">{{ event.name }}</h5>
         <p class="card-text">{{ event.desc }}</p>
           {%  if event.is_open %}
-              <span class="badge badge-primary">Open</span>
+              <span class="badge badge-success">Open</span>
           {% else %}
               <span class="badge badge-danger">Closed</span>
           {% endif %}
@@ -63,6 +38,7 @@
          <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-primary">Enter</a>
           {% if user.is_superuser %}
           <a href="{% url 'event_edit' pk=event.pk %}" class="btn btn-warning">Edit</a>
+              <a href="{% url 'event_delete' pk=event.pk %}" class="btn btn-danger">Delete</a>
           {% endif %}
       </div>
     </div>

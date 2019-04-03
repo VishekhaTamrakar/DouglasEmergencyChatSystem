@@ -115,3 +115,10 @@ def event_create(request):
         else:
             form = EventForm()
         return render(request, 'chat/event_create.html', {'form': form})
+
+@login_required
+def event_delete(request, pk):
+    if request.user.is_superuser:
+        event = get_object_or_404(Event, pk=pk)
+        event.delete()
+        return redirect('/events')

@@ -22,7 +22,8 @@ app_name='dcechat'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homepage, name='homepage'),
+    # path('', views.homepage, name='homepage'),
+    path('', include('chat.urls')),
     path('accounts/', include('accounts.urls')),
     path('events/', include('chat.urls')),
 ]
