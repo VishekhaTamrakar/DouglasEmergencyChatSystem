@@ -27,6 +27,13 @@ class EventView(ListView, LoginRequiredMixin):
     model = Event
     context_object_name = 'events'
 
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            queryset = Event.objects.all()
+        else:
+            queryset = Event.objects.filter(is_open=True)
+        return queryset
+
 
 @login_required
 def event_detail(request, pk):

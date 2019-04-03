@@ -54,6 +54,12 @@
       <div class="card-body">
         <h5 class="card-title">{{ event.name }}</h5>
         <p class="card-text">{{ event.desc }}</p>
+          {%  if event.is_open %}
+              <span class="badge badge-primary">Open</span>
+          {% else %}
+              <span class="badge badge-danger">Closed</span>
+          {% endif %}
+      <br /><br />
          <a href="{% url 'event_details' pk=event.pk %}" class="btn btn-primary">Enter</a>
           {% if user.is_superuser %}
           <a href="{% url 'event_edit' pk=event.pk %}" class="btn btn-warning">Edit</a>
