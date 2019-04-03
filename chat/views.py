@@ -22,7 +22,7 @@ def homepage(request):
 
 
 
-class EventView(ListView, LoginRequiredMixin):
+class EventView(LoginRequiredMixin, ListView):
     template_name = "chat/events.html"
     model = Event
     context_object_name = 'events'
