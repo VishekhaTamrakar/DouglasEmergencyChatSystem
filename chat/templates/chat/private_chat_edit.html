@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>Edit Private Chat</h1>
+    <form method="POST" class="customer-form">{% csrf_token %}
+        {{ form|crispy }}
+
+     <br /><br/><br/><br/><br/>
+    <button type="submit" class="save btn btn-dark">Update</button>
+    </form>
+
+
+{% endblock %}

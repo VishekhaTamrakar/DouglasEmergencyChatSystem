@@ -26,3 +26,8 @@ class CreatePrivateChatForm(forms.ModelForm):
     class Meta:
         model = PrivateChat
         fields = ('name', 'second_user')
+
+class UpdatePrivateChatForm(forms.ModelForm):
+    class Meta:
+        model = PrivateChat
+        fields = ('name', 'first_user', 'second_user', 'is_open')
