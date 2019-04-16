@@ -61,6 +61,7 @@ def private_chat_detail(request,pk):
     }
     return render(request, 'chat/private_chat_detail.html', response_data)
 
+
 @login_required
 def event_detail(request, pk):
     messages = Chat.objects.filter(room=pk)
@@ -142,6 +143,22 @@ def create_message(request):
         data1 = "bad response"
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 
+
+@login_required
+def private_chat_edit(request, pk):
+    if request.user.is_superuser:
+        private_chat = get_object_or_404(PrivateChat, pk=pk)
+        if request.method == "POST":
+            form = UpdatePrivateChatForm(request.POST, instance=private_chat)
+            if form.is_valid():
+                private_chat = form.save(commit=False)
+                private_chat.date = timezone.now()
+                private_chat.save()
+                return redirect('/private_chat')
+        else:
+            form = UpdatePrivateChatForm(instance=private_chat)
+            return render(request, 'chat/private_chat_edit.html', {'form': form})
+
 @login_required
 def event_edit(request, pk):
     if request.user.is_superuser:
@@ -160,6 +177,12 @@ def event_edit(request, pk):
 
 
 
+@login_required
+def private_chat_delete(request, pk):
+    if request.user.is_superuser:
+        private_chat = get_object_or_404(PrivateChat, pk=pk)
+        private_chat.delete()
+        return redirect('/private_chat')
 
 @login_required
 def event_delete(request, pk):
