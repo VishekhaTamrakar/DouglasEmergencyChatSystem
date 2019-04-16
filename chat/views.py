@@ -39,7 +39,7 @@ class EventView(LoginRequiredMixin, ListView):
 class PrivateChatView(LoginRequiredMixin, ListView):
     template_name= "chat/private_chat.html"
     model = PrivateChat
-    context_object_name = 'private_message'
+    context_object_name = 'private_messages'
 
 
     def get_queryset(self):
@@ -73,18 +73,34 @@ def event_detail(request, pk):
 
 '''View for chat creation'''
 '''received request, extends CreatePrivateCharForm to submit the request'''
-# @login_required
-# def private_chat_create(request):
-#     if request.method == "POST":
-#         form = CreatePrivateChatForm(request.POST)
-#             if form.is_valid():
-#                  = form.save(commit=False)
-#                 event.date = timezone.now()
-#                 event.save()
-#                 return redirect('/events')
-#         else:
-#             form = EventForm()
-#         return render(request, 'chat/event_create.html', {'form': form})
+@login_required
+def private_chat_create(request):
+    username = request.user
+    if request.method == "POST":
+        form = CreatePrivateChatForm(request.POST)
+        if form.is_valid():
+            private_chat = form.save(commit=False)
+            private_chat.date = timezone.now()
+            private_chat.first_user = username
+            private_chat.save()
+            return redirect('/private_chat')
+    else:
+        form = CreatePrivateChatForm()
+    return render(request, 'chat/private_chat_create.html', {'form': form})
+
+@login_required
+def event_create(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form = EventForm(request.POST)
+            if form.is_valid():
+                event = form.save(commit=False)
+                event.date = timezone.now()
+                event.save()
+                return redirect('/events')
+        else:
+            form = EventForm()
+        return render(request, 'chat/event_create.html', {'form': form})
 
 # @login_required
 # def create_post(request, pk):
@@ -143,19 +159,7 @@ def event_edit(request, pk):
             return render(request, 'chat/event_edit.html', {'form': form})
 
 
-@login_required
-def event_create(request):
-    if request.user.is_superuser:
-        if request.method == "POST":
-            form = EventForm(request.POST)
-            if form.is_valid():
-                event = form.save(commit=False)
-                event.date = timezone.now()
-                event.save()
-                return redirect('/events')
-        else:
-            form = EventForm()
-        return render(request, 'chat/event_create.html', {'form': form})
+
 
 @login_required
 def event_delete(request, pk):

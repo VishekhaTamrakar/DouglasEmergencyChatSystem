@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<style>
+    #buttonSave{
+        padding-top: 200px;
+    }
+</style>
+{% block content %}
+    <h1>Start a Chat</h1>
+    <form method="POST" class="customer-form">{% csrf_token %}
+        {{ form|crispy }}
+
+
+
+        <br /><br/><br/><br/><br/>
+    <button type="submit" class="save btn btn-dark" id="buttonSave">Save</button>
+    </form>
+
+
+{% endblock %}
