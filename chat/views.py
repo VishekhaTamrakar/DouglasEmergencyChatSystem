@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
 from .forms import *
 from django.utils import timezone
+from django.db.models import Q
+from django.contrib.auth.models import User
 
 now=timezone.now()
 
@@ -34,6 +36,30 @@ class EventView(LoginRequiredMixin, ListView):
             queryset = Event.objects.filter(is_open=True)
         return queryset
 
+class PrivateChatView(LoginRequiredMixin, ListView):
+    template_name= "chat/private_chat.html"
+    model = PrivateChat
+    context_object_name = 'private_message'
+
+
+    def get_queryset(self):
+        username = self.request.user.username
+        if self.request.user.is_superuser:
+            queryset = PrivateChat.objects.all()
+        else:
+            queryset = PrivateChat.object.filter(Q(first_user=username ) | Q(second_user=username)).filter(is_open=True)
+
+        return queryset
+
+
+@login_required
+def private_chat_detail(request,pk):
+    messages = PrivateChatMessages.objects.filter(room=pk)
+    response_data = {
+        'messages': messages,
+        'pk':pk
+    }
+    return render(request, 'chat/private_chat_detail.html', response_data)
 
 @login_required
 def event_detail(request, pk):
@@ -42,8 +68,23 @@ def event_detail(request, pk):
         'messages': messages,
         'pk': pk
     }
-    #return render(request, 'chat/event_detail.html', {'messages':messages})
     return render(request, 'chat/event_detail.html', response_data)
+
+
+'''View for chat creation'''
+'''received request, extends CreatePrivateCharForm to submit the request'''
+# @login_required
+# def private_chat_create(request):
+#     if request.method == "POST":
+#         form = CreatePrivateChatForm(request.POST)
+#             if form.is_valid():
+#                  = form.save(commit=False)
+#                 event.date = timezone.now()
+#                 event.save()
+#                 return redirect('/events')
+#         else:
+#             form = EventForm()
+#         return render(request, 'chat/event_create.html', {'form': form})
 
 # @login_required
 # def create_post(request, pk):

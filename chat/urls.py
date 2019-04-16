@@ -10,4 +10,5 @@ urlpatterns = [
     path('event/<int:pk>/edit/', views.event_edit, name='event_edit'),
     path('event/create', views.event_create, name='event_create'),
     path('event/<int:pk>/delete/', views.event_delete, name='event_delete'),
+    path('private_chat', views.PrivateChatView.as_view(), name='private_chat'),
 ]

@@ -20,3 +20,9 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('name', 'creater', 'desc', 'is_open')
+
+
+class CreatePrivateChatForm(forms.ModelForm):
+    class Meta:
+        model = PrivateChat
+        fields = ('name', 'second_user')

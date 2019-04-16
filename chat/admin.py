@@ -28,3 +28,12 @@ class EventAdmin(ImportExportModelAdmin):
 @admin.register(Chat)
 class ChatAdmin(ImportExportModelAdmin):
     pass
+
+
+@admin.register(PrivateChat)
+class PrivateChatAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(PrivateChatMessages)
+class PrivateChatMessages(ImportExportModelAdmin):
+    pass
