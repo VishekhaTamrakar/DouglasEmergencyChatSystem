@@ -14,4 +14,5 @@ urlpatterns = [
     path('private_chat/create', views.private_chat_create, name='private_chat_create'),
     path('private_chat/<int:pk>/edit/', views.private_chat_edit, name='private_chat_edit'),
     path('private_chat/<int:pk>/delete', views.private_chat_delete, name='private_chat_delete'),
+    path('private_chat/<int:pk>', views.private_chat_detail, name='private_chat_details'),
 ]

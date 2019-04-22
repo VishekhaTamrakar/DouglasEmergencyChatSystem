@@ -35,7 +35,7 @@
               <span class="badge badge-danger">Closed</span>
           {% endif %}
       <br /><br />
-{#         <a href="{% url 'private_chat_details' pk=private_message.pk %}" class="btn btn-primary">Enter</a>#}
+         <a href="{% url 'private_chat_details' pk=private_message.pk %}" class="btn btn-primary">Enter</a>
           {% if user.is_superuser %}
           <a href="{% url 'private_chat_edit' pk=private_message.pk %}" class="btn btn-warning">Edit</a>
               <a href="{% url 'private_chat_delete' pk=private_message.pk %}" class="btn btn-danger">Delete</a>
