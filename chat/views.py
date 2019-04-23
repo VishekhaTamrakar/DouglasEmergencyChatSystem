@@ -189,18 +189,17 @@ def create_private_message(request):
 
 @login_required
 def private_chat_edit(request, pk):
-    if request.user.is_superuser:
-        private_chat = get_object_or_404(PrivateChat, pk=pk)
-        if request.method == "POST":
-            form = UpdatePrivateChatForm(request.POST, instance=private_chat)
-            if form.is_valid():
-                private_chat = form.save(commit=False)
-                private_chat.date = timezone.now()
-                private_chat.save()
-                return redirect('/private_chat')
-        else:
-            form = UpdatePrivateChatForm(instance=private_chat)
-            return render(request, 'chat/private_chat_edit.html', {'form': form})
+    private_chat = get_object_or_404(PrivateChat, pk=pk)
+    if request.method == "POST":
+        form = UpdatePrivateChatForm(request.POST, instance=private_chat)
+        if form.is_valid():
+            private_chat = form.save(commit=False)
+            private_chat.date = timezone.now()
+            private_chat.save()
+            return redirect('/private_chat')
+    else:
+        form = UpdatePrivateChatForm(instance=private_chat)
+        return render(request, 'chat/private_chat_edit.html', {'form': form})
 
 @login_required
 def event_edit(request, pk):
