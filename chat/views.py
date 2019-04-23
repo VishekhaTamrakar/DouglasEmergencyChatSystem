@@ -44,10 +44,13 @@ class PrivateChatView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         username = self.request.user.username
+        user = self.request.user.pk
+        print(user)
         if self.request.user.is_superuser:
             queryset = PrivateChat.objects.all()
         else:
-            queryset = PrivateChat.object.filter(Q(first_user=username ) | Q(second_user=username)).filter(is_open=True)
+            queryset = PrivateChat.objects.filter(Q(first_user=user) | Q(second_user=user)).filter(is_open=True)
+
 
         return queryset
 
@@ -141,7 +144,47 @@ def create_message(request):
         return HttpResponse(json.dumps(response_data, cls=DjangoJSONEncoder), content_type="application/json")
     else:
         data1 = "bad response"
-        return HttpResponse(json.dumps(response_data), content_type="application/json")
+        return HttpResponse(json.dumps(data1), content_type="application/json")
+
+
+@login_required
+def create_private_message(request):
+    if request.method == 'POST':
+        '''The text from the Chat'''
+        post_text = request.POST.get('message')
+        print(post_text)
+
+        '''Get the private chat ID from request'''
+        chat_id = request.POST.get('chat_id')
+        chat = PrivateChat.objects.get(id=chat_id)
+
+        '''User who is posting a message'''
+        if request.user.is_authenticated:
+            username = request.user.username
+
+        '''Get the user'''
+        user = User.objects.get(username=username)
+
+
+        '''Create new chat message'''
+        message = PrivateChatMessages.objects.create(room=chat,user=user, text=post_text)
+        message.save()
+
+        '''This is the response data'''
+        response_data = {}
+        response_data['result'] = 'Message was successfully posted'
+        # response_data['messagepk'] = message.pk
+        # response_data['text'] = message.text
+        # response_data['date'] = message.date
+        # response_data['user'] = username
+
+        return HttpResponse(json.dumps(response_data, cls=DjangoJSONEncoder), content_type="application/json")
+    else:
+        data = 'Error please check'
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+
 
 
 @login_required

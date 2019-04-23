@@ -177,28 +177,28 @@
 
 
     <script>
-        {#var event = {{ pk }}#}
-        {##}
-        {##}
-        {#$('.send_btn').click(function(){#}
-        {#    var message = $('.type_msg').val();#}
-        {#    console.log(message);#}
-        {##}
-        {#    $.ajax({#}
-        {#        url: "{% url 'message_new' %}",#}
-        {#        type: "POST",#}
-        {#        data: {#}
-        {#            'csrfmiddlewaretoken': '{{ csrf_token }}',#}
-        {#            message,#}
-        {#            event#}
-        {#        },#}
-        {##}
-        {#        success: function(data){#}
-        {#           location.reload();#}
-        {#        }#}
-        {#    })#}
-        {##}
-        {#});#}
+        var chat_id = {{ pk }}
+
+
+        $('.send_btn').click(function(){
+            var message = $('.type_msg').val();
+            console.log(message);
+
+            $.ajax({
+                url: "{% url 'create_private_message' %}",
+                type: "POST",
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    message,
+                    chat_id
+                },
+
+                success: function(data){
+                   location.reload();
+                }
+            })
+
+        });
     </script>
 
 {% endblock %}
