@@ -8,26 +8,29 @@ class EventResources(resources.ModelResource):
 
     class Meta:
         model = Event
+        list_filter = ("creater", "name", "date")
         list_display = ("creater", "invited_user", "date")
-
-        def invited_user(self, obj):
-            return "\n".join([user.username for user in obj.invited.all()])
 
 
 class ChatResources(resources.ModelResource):
     '''Dialogs'''
     class Meta:
         model = Chat
-        list_display = ("room", "user", "text", "date")
+        list_filter = ("creater", "name", "date")
+
 
 
 @admin.register(Event)
 class EventAdmin(ImportExportModelAdmin):
-    pass
+    resource_class= EventResources
+    list_filter = ("creater", "name", "date")
+
 
 @admin.register(Chat)
 class ChatAdmin(ImportExportModelAdmin):
-    pass
+    resource_class = ChatResources
+    list_display = ("room", "user", "text", "date")
+    list_filter = ("room", "user", "date")
 
 
 @admin.register(PrivateChat)
