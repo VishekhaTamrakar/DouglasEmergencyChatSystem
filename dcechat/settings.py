@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'dcechat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd2nhm1ipth620t',
-        'USER': 'ozjwhhcrprlptg',
-        'PASSWORD': '4544b252c5c5236f0892c619b2315eb7ddbfa7fe97134683259a093d4847b042',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': 'ec2-23-23-241-119.compute-1.amazonaws.com',
         'PORT': '5432',
     }
