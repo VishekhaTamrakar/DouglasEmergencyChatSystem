@@ -12,6 +12,8 @@ from .forms import *
 from django.utils import timezone
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.core import serializers
+
 
 now=timezone.now()
 
@@ -68,9 +70,12 @@ def private_chat_detail(request,pk):
 @login_required
 def event_detail(request, pk):
     messages = Chat.objects.filter(room=pk)
+    users = Chat.objects.filter(room=pk).values_list('user__username', flat=True).distinct()
+    event_users = Event.objects.filter(id=pk)
     response_data = {
         'messages': messages,
-        'pk': pk
+        'pk': pk,
+        'users': users
     }
     return render(request, 'chat/event_detail.html', response_data)
 
@@ -184,6 +189,16 @@ def create_private_message(request):
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
+
+@login_required
+def active_users_for_event(request):
+    event = request.GET.get('event')
+    print(event)
+    users = Event.objects.filter(id=event)
+    data = serializers.serialize('json', users, fields=('invited'))
+
+    print(users)
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json")
 
 
 
