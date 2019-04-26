@@ -63,5 +63,4 @@ class PrivateChatMessages(models.Model):
         verbose_name_plural="Private Chat Messages"
 
 
-    def __str__(self):
-        return self.room
+    
