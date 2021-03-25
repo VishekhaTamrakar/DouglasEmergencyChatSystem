@@ -11,7 +11,7 @@ odfpy==1.4.0
 openpyxl==2.6.1
 psycopg2==2.7.5
 pytz==2018.9
-PyYAML==3.13
+PyYAML==5.4
 tablib==0.12.1
 unicodecsv==0.14.1
 whitenoise==4.0
